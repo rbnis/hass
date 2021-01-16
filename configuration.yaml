@@ -16,7 +16,7 @@ homeassistant:
   time_zone: Europe/Berlin
 
 # Server Settings
-http: !include ssl.yaml
+http: !include server.yaml
 
 # Basic Grouping
 group: !include groups.yaml

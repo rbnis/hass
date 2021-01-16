@@ -1,0 +1,39 @@
+- id: '1596818636029'
+  alias: Hallway Motion Detected
+  description: Tuns the lights on in the hallway when motion is detected.
+  trigger:
+  - entity_id: binary_sensor.hallway_motion
+    platform: state
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - before: sunrise
+      before_offset: +02:00:00
+      condition: sun
+    - after: sunset
+      after_offset: -01:00:00
+      condition: sun
+  action:
+  - data:
+      brightness_pct: 75
+      color_temp: 350
+    entity_id: light.hallway_ceiling_light
+    service: light.turn_on
+  mode: single
+
+- id: '1596818820341'
+  alias: Hallway Motion Not Detected
+  description: Turns the lights off in the hallway when no motion is registered for some time.
+  trigger:
+  - entity_id: binary_sensor.hallway_motion
+    for: 0:01:00
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      transition: 60
+    entity_id: light.hallway_ceiling_light
+    service: light.turn_off
+  mode: restart
