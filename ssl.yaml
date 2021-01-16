@@ -1,0 +1,3 @@
+server_port: 443
+ssl_certificate: /ssl/home.rbn.is-wildcard.fullchain
+ssl_key: /ssl/home.rbn.is-wildcard.key

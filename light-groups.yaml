@@ -1,0 +1,20 @@
+- platform: group
+  name: Living Room Ceiling Light
+  entities:
+    - light.living_room_ceiling_light_1
+    - light.living_room_ceiling_light_2
+    - light.living_room_ceiling_light_3
+
+- platform: group
+  name: Hallway Ceiling Light
+  entities:
+    - light.hallway_ceiling_light_1
+    - light.hallway_ceiling_light_2
+    - light.hallway_ceiling_light_3
+
+- platform: group
+  name: Bedroom Ceiling Light
+  entities:
+    - light.bedroom_ceiling_light_1
+    - light.bedroom_ceiling_light_2
+

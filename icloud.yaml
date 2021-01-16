@@ -1,0 +1,3 @@
+  - username: !secret integrations_icloud_user 
+    password: !secret integrations_icloud_pass
+    gps_accuracy_threshold: 200

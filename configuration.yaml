@@ -1,0 +1,40 @@
+---
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Base Settings
+homeassistant:
+  name: !secret base_name
+  internal_url: !secret base_internal_url
+  external_url: !secret base_external_url
+  latitude: !secret base_latitude
+  longitude: !secret base_longitude
+  elevation: !secret base_elevation
+  unit_system: metric
+  temperature_unit: C
+  time_zone: Europe/Berlin
+
+# Server Settings
+http: !include ssl.yaml
+
+# Basic Grouping
+group: !include groups.yaml
+light groups: !include light-groups.yaml
+
+# Here be dragons. Also this is where the magic happens
+timer: !include timers.yaml
+scene: !include scenes.yaml
+script: !include scripts.yaml
+automation ui: !include automations.yaml
+automation manual: !include_dir_list automations/
+
+# Integrations
+icloud: !include icloud.yaml
+
+tts:
+  - platform: google_translate
+
+#ios:
+#  actions: !include actions.yaml
+

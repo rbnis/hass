@@ -1,0 +1,137 @@
+turn_off_all_lights:
+  alias: Turn off all lights
+  icon: hass:lightbulb-off
+  mode: single
+  sequence:
+  - data: {}
+    entity_id:
+    - light.hallway_ceiling_light
+    - light.bedroom_ceiling_light
+    - light.bedroom_bed_light_left
+    - light.bedroom_bed_light_left
+    - light.kitchen_ceiling_light
+    - light.living_room_ceiling_light
+    - light.living_room_ambiente_desk_1
+    - light.living_room_ambiente_couch
+    service: light.turn_off
+
+toggle_living_room:
+  alias: Toggle Living Room
+  mode: single
+  sequence:
+  - variables:
+      ceiling_light:
+        brightness: 75
+        color_temp: 350
+      ambiente_light:
+        color:
+          - 104
+          - 0
+          - 231
+        color_bkp:
+          - 136
+          - 221
+          - 0
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: light.living_room_ceiling_light
+            state: 'on'
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: light.living_room_ambiente_desk_1
+            state: 'on'
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: light.living_room_ambiente_couch
+            state: 'on'
+      sequence:
+      - service: light.turn_on
+        entity_id: light.living_room_ceiling_light
+        data:
+          brightness_pct: '{{ ceiling_light.brightness }}'
+          color_temp: '{{ ceiling_light.color_temp }}'
+      - service: light.turn_on
+        entity_id: light.living_room_ambiente_desk_1
+        data:
+          brightness_pct: 50
+          rgb_color: '{{ ambiente_light.color }}'
+      - service: light.turn_on
+        entity_id: light.living_room_ambiente_couch
+        data:
+          brightness_pct: 75
+          rgb_color: '{{ ambiente_light.color }}'
+    default:
+    - service: light.turn_off
+      entity_id: light.living_room_ceiling_light
+      data: {}
+    - service: light.turn_off
+      entity_id: light.living_room_ambiente_desk_1
+      data: {}
+    - service: light.turn_off
+      entity_id: light.living_room_ambiente_couch
+      data: {}
+
+toggle_bedroom_lights:
+  alias: Toggle Bedroom Lights
+  sequence:
+  - variables:
+      ceiling_light:
+        brightness: 75
+        color_temp: 350
+      bed_light:
+        brightness: 35
+        color_temp: 350
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: light.bedroom_ceiling_light
+            state: 'on'
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: light.bedroom_bed_light_left
+            state: 'on'
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: light.bedroom_bed_light_right
+            state: 'on'
+      sequence:
+      - service: light.turn_on
+        entity_id: light.bedroom_ceiling_light
+        data:
+          brightness_pct: '{{ ceiling_light.brightness }}'
+          color_temp: '{{ ceiling_light.color_temp }}'
+      - service: light.turn_on
+        entity_id: light.bedroom_bed_light_left
+        data:
+          brightness_pct: '{{ bed_light.brightness }}'
+          color_temp: '{{ bed_light.color_temp }}'
+      - service: light.turn_on
+        entity_id: light.bedroom_bed_light_right
+        data:
+          brightness_pct: '{{ bed_light.brightness }}'
+          color_temp: '{{ bed_light.color_temp }}'
+    default:
+    - service: light.turn_off
+      entity_id: light.bedroom_ceiling_light
+      data: {}
+    - service: light.turn_off
+      entity_id: light.bedroom_bed_light_left
+      data: {}
+    - service: light.turn_off
+      entity_id: light.bedroom_bed_light_right
+      data: {}
+  mode: single
+
