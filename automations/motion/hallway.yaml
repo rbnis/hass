@@ -1,5 +1,4 @@
-- id: '1596818636029'
-  alias: Hallway Motion Detected
+- alias: Hallway Motion Detected
   description: Tuns the lights on in the hallway when motion is detected.
   trigger:
   - entity_id: binary_sensor.hallway_motion
@@ -22,8 +21,7 @@
     service: light.turn_on
   mode: single
 
-- id: '1596818820341'
-  alias: Hallway Motion Not Detected
+- alias: Hallway Motion Not Detected
   description: Turns the lights off in the hallway when no motion is registered for some time.
   trigger:
   - entity_id: binary_sensor.hallway_motion

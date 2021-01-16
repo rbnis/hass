@@ -1,5 +1,4 @@
-- id: '1596826008548'
-  alias: Kitchen Motion Detected
+- alias: Kitchen Motion Detected
   description: Tuns the lights on in the kitchen when motion is detected.
   trigger:
   - entity_id: binary_sensor.kitchen_motion
@@ -21,8 +20,7 @@
     service: light.turn_on
   mode: single
 
-- id: '1596826127207'
-  alias: Kitchen Motion Not Detected
+- alias: Kitchen Motion Not Detected
   description: Turns the lights off in the kitchen when no motion is registered for some time.
   trigger:
   - entity_id: binary_sensor.kitchen_motion

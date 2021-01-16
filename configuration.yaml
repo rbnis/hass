@@ -27,7 +27,7 @@ timer: !include timers.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
 automation ui: !include automations.yaml
-automation manual: !include_dir_list automations/
+automation manual: !include_dir_merge_list automations/
 
 # Integrations
 icloud: !include icloud.yaml
