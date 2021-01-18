@@ -213,26 +213,11 @@
     from: Home
     platform: state
     to: Away
-    attribute: editable
   condition: []
   action:
   - service: automation.trigger
     data: {}
     entity_id: automation.turn_off_all_lights
-  mode: single
-- id: '1599308652870'
-  alias: Reanable Kitchen Motion Sensor
-  description: ''
-  trigger:
-  - event_data:
-      entity_id: timer.kitchen_motion_disable
-    event_type: timer.finished
-    platform: event
-  condition: []
-  action:
-  - data: {}
-    entity_id: automation.kitchen_motion_not_detected
-    service: automation.turn_on
   mode: single
 - id: '1600627887713'
   alias: Turn off all lights
@@ -271,6 +256,11 @@
     platform: device
     type: remote_button_short_press
     subtype: left
+  - device_id: 9dec237dd3e041cba183eeac96ef37b8
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: right
   condition: []
   action:
   - variables:
@@ -312,6 +302,11 @@
     platform: device
     type: remote_button_short_press
     subtype: right
+  - device_id: 9dec237dd3e041cba183eeac96ef37b8
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: left
   condition: []
   action:
   - variables:
