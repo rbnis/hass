@@ -1,0 +1,26 @@
+actions:
+- name: Bedroom
+  background_color: "#2c3e50"
+  label:
+    text: "Bedroom"
+    color: "#ffffff"
+  icon:
+    icon: bed_king_outline
+    color: "#ffffff"
+- name: Living Room
+  background_color: "#6800e7"
+  label:
+    text: "Living Room"
+    color: "#ffffff"
+  icon:
+    icon: sofa_outline
+    color: "#ffffff"
+- name: Turn off all lights
+  background_color: "#000000"
+  label:
+    text: "Turn off all lights"
+    color: "#ffffff"
+  icon:
+    icon: lightbulb_group_off_outline
+    color: "#ffffff"
+
