@@ -22,7 +22,7 @@
     entity_id: light.kitchen_ceiling_light
     data:
       brightness_pct: >
-        {% if now().time() | int >= 6 and now().time() | int <= 22 %}
+        {% if now().hour | int >= 6 and now().hour | int <= 22 %}
         {{ brightness.day }}
         {% else %}
         {{ brightness.night }}
