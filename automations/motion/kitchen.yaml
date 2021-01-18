@@ -14,10 +14,19 @@
       after_offset: -01:00:00
       condition: sun
   action:
-  - data:
-      brightness_pct: 85
+  - variables:
+      brightness:
+        day: 85
+        night: 5
+  - service: light.turn_on
     entity_id: light.kitchen_ceiling_light
-    service: light.turn_on
+    data:
+      brightness_pct: >
+        {% if now().time() | int >= 6 and now().time() | int <= 22 %}
+        {{ brightness.day }}
+        {% else %}
+        {{ brightness.night }}
+        {% endif %}
   mode: single
 
 - alias: Kitchen Motion Not Detected

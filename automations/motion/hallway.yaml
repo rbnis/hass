@@ -14,11 +14,21 @@
       after_offset: -01:00:00
       condition: sun
   action:
-  - data:
-      brightness_pct: 75
+  - variables:
+      brightness:
+        day: 75
+        night: 5
       color_temp: 350
+  - service: light.turn_on
     entity_id: light.hallway_ceiling_light
-    service: light.turn_on
+    data:
+      brightness_pct: >
+        {% if now().time() | int >= 6 and now().time() | int <= 22 %}
+        {{ brightness.day }}
+        {% else %}
+        {{ brightness.night }}
+        {% endif %}
+      color_temp: '{{ color_temp }}'
   mode: single
 
 - alias: Hallway Motion Not Detected
