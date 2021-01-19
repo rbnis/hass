@@ -1,5 +1,5 @@
 - id: '1596821066084'
-  alias: Living Room Switch Toggle lights
+  alias: Living Room Toggle All Lights
   description: Turns the lights on in the living room by the press of a button
   trigger:
   - device_id: b97c5611860c431e901dc2ecdde40f22
@@ -18,7 +18,7 @@
     service: script.toggle_living_room
   mode: single
 - id: '1596821331812'
-  alias: Living Room Switch Dim lights up
+  alias: Living Room Dim Ceiling Lights Up
   description: ''
   trigger:
   - device_id: b97c5611860c431e901dc2ecdde40f22
@@ -34,7 +34,7 @@
     service: light.turn_on
   mode: single
 - id: '1596821394621'
-  alias: Living Room Switch Dim lights down
+  alias: Living Room Dim Ceiling Lights Down
   description: ''
   trigger:
   - device_id: b97c5611860c431e901dc2ecdde40f22
@@ -50,7 +50,7 @@
     service: light.turn_on
   mode: single
 - id: '1596824265606'
-  alias: Kitchen Switch Turn light on
+  alias: Kitchen Turn Ceiling Light On
   description: ''
   trigger:
   - device_id: 2962ebafc9194ec487725951942576ad
@@ -76,7 +76,7 @@
     service: timer.start
   mode: single
 - id: '1596824355520'
-  alias: Kitchen Switch Turn lights off
+  alias: Kitchen Turn Ceiling Lights Off
   description: ''
   trigger:
   - device_id: 2962ebafc9194ec487725951942576ad
@@ -97,7 +97,7 @@
     service: timer.finish
   mode: single
 - id: '1596824474007'
-  alias: Kitchen Switch Dim lights up
+  alias: Kitchen Dim Ceiling Lights Up
   description: ''
   trigger:
   - device_id: 2962ebafc9194ec487725951942576ad
@@ -123,7 +123,7 @@
     service: timer.start
   mode: single
 - id: '1596824558334'
-  alias: Kitchen Switch Dim lights down
+  alias: Kitchen Dim Ceiling Lights Down
   description: ''
   trigger:
   - device_id: 2962ebafc9194ec487725951942576ad
@@ -142,7 +142,7 @@
     service: light.turn_on
   mode: single
 - id: '1596828920288'
-  alias: Bedroom Toggle All lights
+  alias: Bedroom Toggle All Lights
   description: ''
   trigger:
   - device_id: 9dec237dd3e041cba183eeac96ef37b8
@@ -171,7 +171,7 @@
     service: script.toggle_bedroom_lights
   mode: single
 - id: '1596901034041'
-  alias: Bedroom Dim Ceiling lights up
+  alias: Bedroom Dim Ceiling Lights Up
   description: ''
   trigger:
   - device_id: 9dec237dd3e041cba183eeac96ef37b8
@@ -182,13 +182,18 @@
   condition: []
   action:
   - data:
-      brightness_step_pct: 10
+      brightness_step_pct: >
+        {% if ( state_attr("light.bedroom_ceiling_light", "brightness") / 2.54 ) | int <= 10 %}
+        {{ (( state_attr("light.bedroom_ceiling_light", "brightness") / 2.54 ) * 2 ) | int }}
+        {% else %}
+        10
+        {% endif %}
     entity_id: light.bedroom_ceiling_light
     service: light.turn_on
   mode: parallel
   max: 10
 - id: '1596901058445'
-  alias: Bedroom Dim Ceiling lights down
+  alias: Bedroom Dim Ceiling Lights Down
   description: ''
   trigger:
   - device_id: 9dec237dd3e041cba183eeac96ef37b8
@@ -199,42 +204,38 @@
   condition: []
   action:
   - data:
-      brightness_step_pct: -10
+      brightness_step_pct: >
+        {% if ( state_attr("light.bedroom_ceiling_light", "brightness") / 2.54 ) | int <= 1 %}
+        0
+        {% elif ( state_attr("light.bedroom_ceiling_light", "brightness") / 2.54 ) | int <= 10 %}
+        {{ ((( state_attr("light.bedroom_ceiling_light", "brightness") / 2.54 ) / 2 ) | int ) * -1 }}
+        {% else %}
+        -10
+        {% endif %}
     entity_id: light.bedroom_ceiling_light
     service: light.turn_on
   mode: parallel
   max: 10
-- id: '1598220220014'
-  alias: Turn off the lights when I leave home
-  description: ''
-  trigger:
-  - entity_id: person.robin
-    for: 0:10:00
-    from: Home
-    platform: state
-    to: Away
-  condition: []
-  action:
-  - service: automation.trigger
-    data: {}
-    entity_id: automation.turn_off_all_lights
-  mode: single
 - id: '1600627887713'
-  alias: Turn off all lights
+  alias: Turn Off All Lights
   description: ''
   trigger:
+  - platform: state
+    entity_id: person.robin
+    from: Home
+    for: 00:10:00
   - platform: event
     event_type: ios.action_fired
     event_data:
       actionName: Turn off all lights
-  - device_id: f42fb3ab59acbf4aa6aeb4f866664703
+  - platform: device
+    device_id: f42fb3ab59acbf4aa6aeb4f866664703
     domain: deconz
-    platform: device
     type: remote_button_long_press
     subtype: turn_on
-  - device_id: f2759b059df72bf6dd69b11c7a084d4f
+  - platform: device
+    device_id: f2759b059df72bf6dd69b11c7a084d4f
     domain: deconz
-    platform: device
     type: remote_button_long_press
     subtype: turn_on
   condition: []
@@ -346,7 +347,12 @@
   condition: []
   action:
   - data:
-      brightness_step_pct: 10
+      brightness_step_pct: >
+        {% if ( state_attr("light.bedroom_bed_light_left","brightness") / 2.54 ) | int <= 10 %}
+        {{ (( state_attr("light.bedroom_bed_light_left","brightness") / 2.54 ) * 2 ) | int }}
+        {% else %}
+        10
+        {% endif %}
     entity_id: light.bedroom_bed_light_left
     service: light.turn_on
   mode: single
@@ -363,7 +369,14 @@
   condition: []
   action:
   - data:
-      brightness_step_pct: -10
+      brightness_step_pct: >
+        {% if ( state_attr("light.bedroom_bed_light_left", "brightness") / 2.54 ) | int <= 1 %}
+        0
+        {% elif ( state_attr("light.bedroom_bed_light_left", "brightness") / 2.54 ) | int <= 10 %}
+        {{ ((( state_attr("light.bedroom_bed_light_left", "brightness") / 2.54 ) / 2 ) | int ) * -1 }}
+        {% else %}
+        -10
+        {% endif %}
     entity_id: light.bedroom_bed_light_left
     service: light.turn_on
   mode: single
@@ -380,7 +393,14 @@
   condition: []
   action:
   - data:
-      brightness_step_pct: -10
+      brightness_step_pct: >
+        {% if ( state_attr("light.bedroom_bed_light_right", "brightness") / 2.54 ) | int <= 1 %}
+        0
+        {% elif ( state_attr("light.bedroom_bed_light_right", "brightness") / 2.54 ) | int <= 10 %}
+        {{ ((( state_attr("light.bedroom_bed_light_right", "brightness") / 2.54 ) / 2 ) | int ) * -1 }}
+        {% else %}
+        -10
+        {% endif %}
     entity_id: light.bedroom_bed_light_right
     service: light.turn_on
   mode: single
@@ -397,7 +417,12 @@
   condition: []
   action:
   - data:
-      brightness_step_pct: 10
+      brightness_step_pct: >
+        {% if ( state_attr("light.bedroom_bed_light_right", "brightness") / 2.54 ) | int <= 10 %}
+        {{ (( state_attr("light.bedroom_bed_light_right", "brightness") / 2.54 ) * 2 ) | int }}
+        {% else %}
+        10
+        {% endif %}
     entity_id: light.bedroom_bed_light_right
     service: light.turn_on
   mode: single
