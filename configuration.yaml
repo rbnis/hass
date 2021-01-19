@@ -3,6 +3,9 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# Global variables using the variable integration from hacs
+var: !include variables.yaml
+
 # Base Settings
 homeassistant:
   name: !secret base_name
