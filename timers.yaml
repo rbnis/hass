@@ -1,3 +1,2 @@
 kitchen_motion_disable:
   name: Disable motion in kitchen for an amount of time
-

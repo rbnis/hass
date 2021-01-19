@@ -134,4 +134,3 @@ toggle_bedroom_lights:
       entity_id: light.bedroom_bed_light_right
       data: {}
   mode: single
-
