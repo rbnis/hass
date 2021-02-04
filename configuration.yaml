@@ -20,6 +20,8 @@ homeassistant:
 
 # Server Settings
 http: !include server.yaml
+frontend:
+  themes: !include_dir_merge_named themes
 
 # Basic Grouping
 group: !include groups.yaml
@@ -35,6 +37,8 @@ automation manual: !include_dir_merge_list automations/
 # Integrations
 icloud: !include icloud.yaml
 ios: !include ios.yaml
+spotify: !include spotify.yaml
+withings: !include withings.yaml
 
 tts:
   - platform: google_translate
