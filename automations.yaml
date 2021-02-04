@@ -222,7 +222,7 @@
   trigger:
   - platform: state
     entity_id: person.robin
-    from: Home
+    from: home
     for: 00:10:00
   - platform: event
     event_type: ios.action_fired
