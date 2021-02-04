@@ -1,9 +1,1 @@
-hallway_light_ceiling_brightness_day:
-  friendly_name: Brightness Day
-  initial_value: 75
-hallway_light_ceiling_brightness_night:
-  friendly_name: Brightness Night
-  initial_value: 5
-hallway_light_ceiling_color_temp:
-  friendly_name: Color Temperature 
-  initial_value: 350
+

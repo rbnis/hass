@@ -26,9 +26,9 @@
         {% if now().hour | int >= 6 and now().hour | int <= 22 %}
         {{ brightness.day }}
         {% else %}
-        {{ brightness.night }}
+        {{brightness.night }}
         {% endif %}
-      color_temp: '{{ color_temp }}'
+      color_temp: "{{ color_temp }}"
   mode: single
 
 - alias: Hallway Motion Not Detected

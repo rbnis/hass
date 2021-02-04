@@ -17,7 +17,7 @@
   - variables:
       brightness:
         day: 85
-        night: 5
+        night: 10
   - service: light.turn_on
     entity_id: light.kitchen_ceiling_light
     data:
