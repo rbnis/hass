@@ -1,0 +1,14 @@
+include:
+  domains:
+  - automation
+  - climate
+  - light
+  - person
+  - script
+  - sun
+  entity_globs:
+  - binary_sensor.*_motion
+  - binary_sensor.withings_in_bed_*
+exclude:
+  entities:
+  - light.raspbee2

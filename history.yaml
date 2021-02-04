@@ -1,0 +1,9 @@
+exclude:
+  domains:
+  - automation
+  - script
+  - var
+  entities:
+  - binary_sensor.updater
+  - sensor.hacs
+  - persistent_notification.config_entry_discovery

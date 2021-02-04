@@ -18,6 +18,9 @@ homeassistant:
   temperature_unit: C
   time_zone: Europe/Berlin
 
+logbook: !include logbook.yaml
+history: !include history.yaml
+
 # Server Settings
 http: !include server.yaml
 frontend:
