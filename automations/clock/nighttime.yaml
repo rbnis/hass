@@ -4,14 +4,14 @@
   - platform: time
     at: "06:00:00"
   - platform: time
-    at: "22:00:00"
+    at: "23:00:00"
   condition: []
   action:
   - service: input_number.set_value
     data:
       entity_id: input_number.nighttime
       value: >
-        {% if now().hour | int == 6 %}
+        {% if now().hour | int >= 6 and now().hour | int <= 22 %}
         0
         {% else %}
         1
