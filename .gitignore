@@ -1,10 +1,12 @@
 !*.yaml
 !.gitignore
 !*.md
+*.bkp
 
 .storage
 .cloud
 .google.token
+tts/
 
 ip_bans.yaml
 secrets.yaml
@@ -12,3 +14,8 @@ known_devices.yaml
 
 home-assistant_*.db
 home-assistant.log
+
+custom_components/hacs/
+custom_components/var/
+www/
+blueprints/
