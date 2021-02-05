@@ -1,4 +1,4 @@
-- alias: Reenable Kitchen Motion Senour
+- alias: Reenable Kitchen Motion Sensor
   description: 'Reenable the motion Sensor in the kitchen after the corresponding timer run out.'
   trigger:
   - platform: event

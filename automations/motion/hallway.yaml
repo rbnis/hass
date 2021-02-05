@@ -23,7 +23,7 @@
     entity_id: light.hallway_ceiling_light
     data:
       brightness_pct: >
-        {% if now().hour | int >= 6 and now().hour | int <= 22 %}
+        {% if states('input_number.nighttime') | int == 0 %}
         {{ brightness.day }}
         {% else %}
         {{brightness.night }}
