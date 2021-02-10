@@ -15,7 +15,6 @@ known_devices.yaml
 home-assistant_*.db
 home-assistant.log
 
-custom_components/hacs/
-custom_components/var/
+custom_components/
 www/
 blueprints/
