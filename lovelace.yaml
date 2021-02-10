@@ -1,0 +1,19 @@
+mode: storage
+dashboards:
+  lovelace-home:
+    mode: yaml
+    title: Home
+    icon: mdi:view-dashboard
+    show_in_sidebar: true
+    filename: lovelace/home.yaml
+resources: 
+  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+    type: module
+  - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+    type: module
+  - url: /hacsfiles/lovelace-thermostat-dark-card/thermostat-dark-card.js
+    type: module
+  - url: /hacsfiles/scheduler-card/scheduler-card.js
+    type: module
+  - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+    type: module

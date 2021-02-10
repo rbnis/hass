@@ -40,6 +40,9 @@ binary_sensor: !include binary_sensor.yaml
 automation ui: !include automations.yaml
 automation manual: !include_dir_merge_list automations/
 
+# Dashboards
+lovelace: !include lovelace.yaml
+
 # Integrations
 icloud: !include icloud.yaml
 ios: !include ios.yaml

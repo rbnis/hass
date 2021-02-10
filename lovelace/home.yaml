@@ -1,0 +1,144 @@
+title: Home 
+views:
+  - badges: []
+    cards:
+      - entity: weather.hupfeldstrasse
+        show_forecast: true
+        type: weather-forecast
+      - cards:
+          - entity: light.bedroom_ceiling_light
+            hold_action:
+              action: more-info
+            icon: 'mdi:bed-king-outline'
+            icon_height: 40px
+            name: Bedroom Ceiling
+            show_icon: true
+            show_name: true
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.toggle_bedroom_lights
+            type: button
+          - entity: light.living_room_ceiling_light
+            hold_action:
+              action: more-info
+            icon: 'mdi:sofa-outline'
+            icon_height: 40px
+            name: Living Room
+            show_icon: true
+            show_name: true
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.toggle_living_room
+            type: button
+          - entity: script.turn_off_all_lights
+            hold_action:
+              action: ''
+            icon: 'hass:lightbulb-group-off-outline'
+            icon_height: 40px
+            name: Turn off all lights
+            show_icon: true
+            show_name: true
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.turn_off_all_lights
+            type: button
+        type: horizontal-stack
+      - card:
+          entity: timer.kitchen_motion_disable
+          hold_action:
+            action: none
+          icon: 'mdi:timer-off'
+          icon_height: 50px
+          name: Reenable Kitchen Motion Sensor
+          show_icon: true
+          show_name: true
+          show_state: false
+          tap_action:
+            action: call-service
+            service: timer.finish
+            service_data:
+              entity_id: timer.kitchen_motion_disable
+          type: button
+        conditions:
+          - entity: timer.kitchen_motion_disable
+            state: active
+        type: conditional
+      - entities:
+          - entity: light.bedroom_ceiling_light
+          - entity: light.bedroom_bed_light_left
+          - entity: light.bedroom_bed_light_right
+          - entity: light.living_room_ceiling_light
+          - entity: light.living_room_ambiente_desk_1
+          - entity: light.living_room_ambiente_couch
+          - entity: light.kitchen_ceiling_light
+          - entity: light.hallway_ceiling_light
+        show_header_toggle: true
+        title: Lights
+        type: entities
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: Living Room
+                entities:
+                  - entity: sensor.temperature_8
+                    name: Living Room
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 20
+                    color: '#d35400'
+                  - value: 20.5
+                    color: '#8ab4f8'
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.humidity_9
+                    name: Living Room
+                name: ' '
+                hours_to_show: 48
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.temperature_15
+                    name: Bedroom
+                name: Bedroom
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 20
+                    color: '#d35400'
+                  - value: 20.5
+                    color: '#8ab4f8'
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.humidity_16
+                    name: Living Room
+                name: ' '
+                hours_to_show: 48
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: Bathroom
+                entities:
+                  - entity: sensor.temperature_17
+                    name: Bathroom
+                hours_to_show: 48
+                color_thresholds:
+                  - value: 20
+                    color: '#d35400'
+                  - value: 20.5
+                    color: '#8ab4f8'
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.humidity_18
+                    name: Bathroom
+                name: ' '
+                hours_to_show: 48
+      - type: media-control
+        entity: media_player.kitchen_speaker
+    panel: false
+    path: home
+    title: Home
