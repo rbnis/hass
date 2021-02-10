@@ -1,0 +1,5 @@
+- platform: template
+  sensors:
+    is_in_bed_left:
+      friendly_name: Left bedside occupied
+      value_template: "{{ states('binary_sensor.withings_in_bed_robin') == 'on' }}"

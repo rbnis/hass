@@ -1,0 +1,3 @@
+binary_sensor.is_in_bed_left:
+  icon: mdi:bed
+  device_class: occupancy
