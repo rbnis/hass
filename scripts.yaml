@@ -8,13 +8,12 @@ turn_off_all_lights:
     - light.hallway_ceiling_light
     - light.bedroom_ceiling_light
     - light.bedroom_bed_light_left
-    - light.bedroom_bed_light_left
+    - light.bedroom_bed_light_right
     - light.kitchen_ceiling_light
     - light.living_room_ceiling_light
     - light.living_room_ambiente_desk_1
     - light.living_room_ambiente_couch
     service: light.turn_off
-
 toggle_living_room:
   alias: Toggle Living Room
   mode: single
@@ -25,13 +24,13 @@ toggle_living_room:
         color_temp: 350
       ambiente_light:
         color:
-          - 104
-          - 0
-          - 231
+        - 104
+        - 0
+        - 231
         color_bkp:
-          - 136
-          - 221
-          - 0
+        - 136
+        - 221
+        - 0
   - choose:
     - conditions:
       - condition: and
@@ -77,7 +76,6 @@ toggle_living_room:
     - service: light.turn_off
       entity_id: light.living_room_ambiente_couch
       data: {}
-
 toggle_bedroom_lights:
   alias: Toggle Bedroom Lights
   sequence:
