@@ -1,0 +1,12 @@
+update_thermostat:
+  description: Use an external temperature sensor to control the target temperature of an radiator valve.
+  fields:
+    temperature:
+      description: The temperature sensor to track room temperature.
+      example: sensor.temperature_kitchen
+    thermostat:
+      description: The entity id of your radiator valve.
+      example: climate.thermostat_kitchen
+    temperature_target:
+      description: The temperature you want your room to have.
+      example: 21.5

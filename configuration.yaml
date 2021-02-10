@@ -3,6 +3,11 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+logger:
+  default: warning
+  logs:
+    homeassistant.components.python_script: info
+
 # Global variables using the variable integration from hacs
 var: !include variables.yaml
 
@@ -39,6 +44,9 @@ script: !include scripts.yaml
 binary_sensor: !include binary_sensor.yaml
 automation ui: !include automations.yaml
 automation manual: !include_dir_merge_list automations/
+
+# Enable python scripts
+python_script:
 
 # Dashboards
 lovelace: !include lovelace.yaml
