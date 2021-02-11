@@ -4,3 +4,21 @@ nighttime:
   min: 0
   max: 1
   step: 1
+living_room_temerature_target:
+  name: Living Room Temperature Target
+  initial: 21
+  min: 7
+  max: 35
+  step: 0.5
+bedroom_temerature_target:
+  name: Bedroom Temperature Target
+  initial: 21
+  min: 7
+  max: 35
+  step: 0.5
+bathroom_temerature_target:
+  name: Bathroom Temperature Target
+  initial: 21
+  min: 7
+  max: 35
+  step: 0.5

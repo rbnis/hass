@@ -1,0 +1,9 @@
+living_room_thermostat:
+  name: Living Room Thermostat
+  icon: mdi:thermostat
+bedroom_thermostat:
+  name: Bedroom Thermostat
+  icon: mdi:thermostat
+bathroom_thermostat:
+  name: Bathroom Thermostat
+  icon: mdi:thermostat

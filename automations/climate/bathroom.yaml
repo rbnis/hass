@@ -1,0 +1,40 @@
+alias: Bathroom Control Radiator Valve
+description: ''
+trigger:
+  - platform: state
+    entity_id: sensor.temperature_17
+  - platform: state
+    entity_id: input_number.bathroom_temerature_target
+  - platform: state
+    entity_id: climate.bathroom_thermostat
+  - platform: state
+    entity_id: input_boolean.bathroom_thermostat
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.entity_id.split(''.'')[0] == ''input_boolean'' }}'
+        sequence:
+          - choose:
+              - conditions:
+                  - condition: state
+                    entity_id: input_boolean.bathroom_thermostat
+                    state: 'off'
+                sequence:
+                  - service: climate.set_hvac_mode
+                    entity_id: climate.bathroom_thermostat
+                    data:
+                      hvac_mode: 'off'
+            default:
+              - service: climate.set_hvac_mode
+                data:
+                  hvac_mode: auto
+                entity_id: climate.bathroom_thermostat
+    default:
+      - service: python_script.update_thermostat
+        data:
+          temperature: sensor.temperature_17
+          thermostat: climate.bathroom_thermostat
+          temperature_target: '{{ states(''input_number.bathroom_temerature_target'') }}'
+mode: single

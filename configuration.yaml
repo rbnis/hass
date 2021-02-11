@@ -37,6 +37,7 @@ group: !include groups.yaml
 light groups: !include light_groups.yaml
 
 # Here be dragons. Also this is where the magic happens
+input_boolean: !include input_boolean.yaml
 input_number: !include input_number.yaml
 timer: !include timers.yaml
 scene: !include scenes.yaml

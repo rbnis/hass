@@ -1,0 +1,40 @@
+alias: Living Room Control Radiator Valve
+description: ''
+trigger:
+  - platform: state
+    entity_id: sensor.temperature_8
+  - platform: state
+    entity_id: input_number.living_room_temerature_target
+  - platform: state
+    entity_id: climate.living_room_thermostat
+  - platform: state
+    entity_id: input_boolean.living_room_thermostat
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.entity_id.split(''.'')[0] == ''input_boolean'' }}'
+        sequence:
+          - choose:
+              - conditions:
+                  - condition: state
+                    entity_id: input_boolean.living_room_thermostat
+                    state: 'off'
+                sequence:
+                  - service: climate.set_hvac_mode
+                    entity_id: climate.living_room_thermostat
+                    data:
+                      hvac_mode: 'off'
+            default:
+              - service: climate.set_hvac_mode
+                data:
+                  hvac_mode: auto
+                entity_id: climate.living_room_thermostat
+    default:
+      - service: python_script.update_thermostat
+        data:
+          temperature: sensor.temperature_8
+          thermostat: climate.living_room_thermostat
+          temperature_target: '{{ states(''input_number.living_room_temerature_target'') }}'
+mode: single
