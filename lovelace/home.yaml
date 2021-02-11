@@ -11,7 +11,7 @@ views:
               action: more-info
             icon: 'mdi:bed-king-outline'
             icon_height: 40px
-            name: Bedroom Ceiling
+            name: Bedroom
             show_icon: true
             show_name: true
             show_state: false
