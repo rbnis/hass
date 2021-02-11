@@ -6,7 +6,7 @@ default_config:
 logger:
   default: warning
   logs:
-    homeassistant.components.python_script: info
+    homeassistant.components.python_script: warning
 
 # Global variables using the variable integration from hacs
 var: !include variables.yaml

@@ -14,21 +14,32 @@ if thermostat is not None and temperature is not None:
   thermostat_target = 0
 
   if thermostat_state.state == 'off':
-    logger.debug("Set min temperature, because state=off")
+    logger.info("Setting target %s to min temperature, because state=off")
     thermostat_target = float(thermostat_state.attributes['min_temp'])
   else:
     temperature_state=hass.states.get(temperature)
     temperature_delta = temperature_target - float(temperature_state.state)
 
-    # logger.debug("temperature_delta=%s", temperature_delta)
+    logger.debug("temperature_target=%s", temperature_target)
+    logger.debug("temperature_state=%s", float(temperature_state.state))
+    logger.debug("temperature_delta=%s (%s - %s)", temperature_delta, temperature_target, float(temperature_state.state))
 
     thermostat_target = float(thermostat_state.attributes['current_temperature']) + float(temperature_delta)
+
+    logger.debug("thermostat_state=%s", float(thermostat_state.attributes['current_temperature']))
+    logger.debug("thermostat_target=%s (%s + %s)", thermostat_target, float(thermostat_state.attributes['current_temperature']), temperature_delta)
+
     if thermostat_target > float(thermostat_state.attributes['max_temp']):
       thermostat_target = float(thermostat_state.attributes['max_temp'])
 
+    logger.debug("thermostat_target_sanitized=%s", thermostat_target)
+
   thermostat_target = round(thermostat_target * 2) / 2
+
+  logger.debug("thermostat_target_rounded=%s", thermostat_target)
+
   if thermostat_target != float(thermostat_state.attributes['temperature']):
-    logger.debug("Set target to %s", thermostat_target)
+    logger.info("Setting target %s to %s", thermostat, thermostat_target)
     hass.services.call('climate', 'set_temperature', {
       'entity_id': thermostat,
       'temperature': thermostat_target
