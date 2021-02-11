@@ -1,4 +1,4 @@
-title: Home 
+title: Home
 views:
   - badges: []
     cards:
@@ -66,79 +66,94 @@ views:
           - entity: timer.kitchen_motion_disable
             state: active
         type: conditional
-      - entities:
-          - entity: light.bedroom_ceiling_light
-          - entity: light.bedroom_bed_light_left
-          - entity: light.bedroom_bed_light_right
+      - type: 'custom:mini-graph-card'
+        name: Temperature
+        entities:
+          - entity: sensor.temperature_8
+            name: Living Room
+          - entity: sensor.temperature_15
+            name: Bedroom
+          - entity: sensor.temperature_17
+            name: Bathroom
+          - entity: input_number.nighttime
+            name: Night
+            color: grey
+            show_line: false
+            show_points: false
+            show_legend: false
+            y_axis: secondary
+        hours_to_show: 72
+      - type: entities
+        entities:
           - entity: light.living_room_ceiling_light
+            name: Ceiling Light
+            secondary_info: brightness
           - entity: light.living_room_ambiente_desk_1
+            name: Ambiente Desk
           - entity: light.living_room_ambiente_couch
+            name: Ambiente Couch
+          - entity: input_number.living_room_temerature_target
+            name: Temperature
+            icon: 'mdi:thermometer'
+          - entity: input_boolean.living_room_thermostat
+            icon: 'mdi:power'
+            name: Enabled
+          - entity: sensor.humidity_9
+            name: Humidity
+        title: Living Room
+        show_header_toggle: false
+        state_color: true
+      - type: entities
+        entities:
+          - entity: light.bedroom_ceiling_light
+            name: Ceiling Light
+            secondary_info: brightness
+          - entity: light.bedroom_bed_light_left
+            name: Bed Left
+            secondary_info: brightness
+          - entity: light.bedroom_bed_light_right
+            name: Ambiente Couch
+            secondary_info: brightness
+          - entity: input_number.bedroom_temerature_target
+            name: Temperature
+            icon: 'mdi:thermometer'
+          - entity: input_boolean.bedroom_thermostat
+            icon: 'mdi:power'
+            name: Enabled
+          - entity: sensor.humidity_16
+            name: Humidity
+        title: Bedroom
+        show_header_toggle: false
+        state_color: true
+      - type: entities
+        entities:
           - entity: light.kitchen_ceiling_light
+            name: Ceiling Light
+            secondary_info: brightness
+        title: Kitchen
+        show_header_toggle: false
+        state_color: true
+      - type: entities
+        entities:
+          - entity: input_number.bathroom_temerature_target
+            name: Temperature
+            icon: 'mdi:thermometer'
+          - entity: input_boolean.bathroom_thermostat
+            icon: 'mdi:power'
+            name: Enabled
+          - entity: sensor.humidity_18
+            name: Humidity
+        title: Bathroom
+        show_header_toggle: false
+        state_color: true
+      - type: entities
+        entities:
           - entity: light.hallway_ceiling_light
-        show_header_toggle: true
-        title: Lights
-        type: entities
-      - type: vertical-stack
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: Living Room
-                entities:
-                  - entity: sensor.temperature_8
-                    name: Living Room
-                hours_to_show: 48
-                color_thresholds:
-                  - value: 20
-                    color: '#d35400'
-                  - value: 20.5
-                    color: '#8ab4f8'
-              - type: 'custom:mini-graph-card'
-                entities:
-                  - entity: sensor.humidity_9
-                    name: Living Room
-                name: ' '
-                hours_to_show: 48
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                entities:
-                  - entity: sensor.temperature_15
-                    name: Bedroom
-                name: Bedroom
-                hours_to_show: 48
-                color_thresholds:
-                  - value: 20
-                    color: '#d35400'
-                  - value: 20.5
-                    color: '#8ab4f8'
-              - type: 'custom:mini-graph-card'
-                entities:
-                  - entity: sensor.humidity_16
-                    name: Living Room
-                name: ' '
-                hours_to_show: 48
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: Bathroom
-                entities:
-                  - entity: sensor.temperature_17
-                    name: Bathroom
-                hours_to_show: 48
-                color_thresholds:
-                  - value: 20
-                    color: '#d35400'
-                  - value: 20.5
-                    color: '#8ab4f8'
-              - type: 'custom:mini-graph-card'
-                entities:
-                  - entity: sensor.humidity_18
-                    name: Bathroom
-                name: ' '
-                hours_to_show: 48
-      - type: media-control
-        entity: media_player.kitchen_speaker
+            name: Ceiling Light
+            secondary_info: brightness
+        title: Hallway
+        show_header_toggle: false
+        state_color: true
     panel: false
     path: home
     title: Home
