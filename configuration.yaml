@@ -34,7 +34,7 @@ frontend:
 
 # Basic Grouping
 group: !include groups.yaml
-light groups: !include light-groups.yaml
+light groups: !include light_groups.yaml
 
 # Here be dragons. Also this is where the magic happens
 input_number: !include input_number.yaml
