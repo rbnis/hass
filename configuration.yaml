@@ -22,15 +22,15 @@ homeassistant:
   unit_system: metric
   temperature_unit: C
   time_zone: Europe/Berlin
-  customize: !include customize.yaml
+  customize: !include system/customize.yaml
 
-logbook: !include logbook.yaml
-history: !include history.yaml
+logbook: !include system/logbook.yaml
+history: !include system/history.yaml
 
 # Server Settings
-http: !include server.yaml
+http: !include system/server.yaml
 frontend:
-  themes: !include_dir_merge_named themes
+  themes: !include_dir_merge_named system/themes
 
 # Basic Grouping
 group: !include groups.yaml
@@ -53,10 +53,9 @@ python_script:
 lovelace: !include lovelace.yaml
 
 # Integrations
-icloud: !include icloud.yaml
-ios: !include ios.yaml
-spotify: !include spotify.yaml
-withings: !include withings.yaml
+ios: !include integrations/ios.yaml
+spotify: !include integrations/spotify.yaml
+withings: !include integrations/withings.yaml
 
 tts:
   - platform: google_translate
