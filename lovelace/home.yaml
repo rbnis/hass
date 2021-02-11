@@ -112,7 +112,7 @@ views:
             name: Bed Left
             secondary_info: brightness
           - entity: light.bedroom_bed_light_right
-            name: Ambiente Couch
+            name: Bed Right
             secondary_info: brightness
           - entity: input_number.bedroom_temerature_target
             name: Temperature
