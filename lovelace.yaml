@@ -6,7 +6,7 @@ dashboards:
     icon: mdi:view-dashboard
     show_in_sidebar: true
     filename: lovelace/home.yaml
-resources: 
+resources:
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
     type: module
   - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js

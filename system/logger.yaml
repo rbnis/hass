@@ -1,0 +1,3 @@
+default: warning
+logs:
+  homeassistant.components.python_script: warning
