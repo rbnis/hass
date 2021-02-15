@@ -6,9 +6,12 @@
   - platform: state
     entity_id: input_number.living_room_temerature_target
   - platform: state
-    entity_id: climate.living_room_thermostat
-  - platform: state
     entity_id: input_boolean.living_room_thermostat
+  - platform: state
+    entity_id: binary_sensor.living_room_window
+    to: 'on'
+    for:
+      seconds: 30
   condition: []
   action:
   - choose:
