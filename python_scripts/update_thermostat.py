@@ -55,5 +55,6 @@ if thermostat is not None and temperature is not None:
 
     if thermostat_state.state != hvac_mode:
       hass.services.call('climate', 'set_hvac_mode', {
-        'entity_id': thermostat
+        'entity_id': thermostat,
+        'hvac_mode': hvac_mode
       })
