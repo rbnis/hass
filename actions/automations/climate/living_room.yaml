@@ -11,7 +11,7 @@
     entity_id: binary_sensor.living_room_window
     to: 'on'
     for:
-      seconds: 30
+      seconds: 15
   condition: []
   action:
   - choose:

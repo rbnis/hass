@@ -6,9 +6,12 @@
   - platform: state
     entity_id: input_number.bathroom_temerature_target
   - platform: state
-    entity_id: climate.bathroom_thermostat
-  - platform: state
     entity_id: input_boolean.bathroom_thermostat
+  - platform: state
+    entity_id: binary_sensor.bathroom_window
+    to: 'on'
+    for:
+      seconds: 15
   condition: []
   action:
   - choose:
@@ -42,4 +45,5 @@
         temperature: sensor.temperature_17
         thermostat: climate.bathroom_thermostat
         temperature_target: '{{ states(''input_number.bathroom_temerature_target'') }}'
+        enable_heating: '{% if is_state(''binary_sensor.bathroom_window'', ''off'') and is_state(''input_boolean.bathroom_thermostat'', ''on'') -%}on{%- else -%}off{%- endif %}'
   mode: single

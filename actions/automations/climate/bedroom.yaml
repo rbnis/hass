@@ -6,9 +6,12 @@
   - platform: state
     entity_id: input_number.bedroom_temerature_target
   - platform: state
-    entity_id: climate.bedroom_thermostat
-  - platform: state
     entity_id: input_boolean.bedroom_thermostat
+  - platform: state
+    entity_id: binary_sensor.bedroom_window_right
+    to: 'on'
+    for:
+      seconds: 15
   condition: []
   action:
   - choose:
@@ -42,4 +45,5 @@
         temperature: sensor.temperature_15
         thermostat: climate.bedroom_thermostat
         temperature_target: '{{ states(''input_number.bedroom_temerature_target'') }}'
+        enable_heating: '{% if is_state(''binary_sensor.bedroom_window_right'', ''off'') and is_state(''input_boolean.bedroom_thermostat'', ''on'') -%}on{%- else -%}off{%- endif %}'
   mode: single
