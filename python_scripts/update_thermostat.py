@@ -15,11 +15,11 @@ if thermostat is not None and temperature is not None:
   thermostat_target = 0
 
   # if thermostat_state.state == 'off':
-  if enable_heating != 'off':
+  if enable_heating == 'off':
     if thermostat_state.state == 'off':
       exit()
     else:
-      logger.info("Setting target %s to min temperature, because enable_heating!=off")
+      logger.info("Setting target %s to min temperature, because enable_heating==off", thermostat)
       thermostat_target = float(thermostat_state.attributes['min_temp'])
   else:
     temperature_state=hass.states.get(temperature)
