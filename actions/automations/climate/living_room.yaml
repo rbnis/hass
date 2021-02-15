@@ -42,4 +42,5 @@
         temperature: sensor.temperature_8
         thermostat: climate.living_room_thermostat
         temperature_target: '{{ states(''input_number.living_room_temerature_target'') }}'
+        enable_heating: '{% if is_state(''binary_sensor.living_room_window'', ''off'') and is_state(''input_boolean.living_room_thermostat'', ''on'') -%}on{%- else -%}off{%- endif %}'
   mode: single
