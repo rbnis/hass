@@ -12,6 +12,9 @@
     to: 'on'
     for:
       seconds: 15
+  - platform: state
+    entity_id: binary_sensor.bedroom_window_right
+    to: 'off'
   condition: []
   action:
   - choose:
