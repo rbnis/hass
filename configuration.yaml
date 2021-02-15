@@ -40,7 +40,7 @@ timer: !include entities/timers.yaml
 automation ui: !include actions/automations_ui.yaml
 automation manual: !include_dir_merge_list actions/automations/
 scene: !include actions/scenes.yaml
-script: !include actions/scripts.yaml
+script: !include scripts.yaml
 
 # Dashboards
 lovelace: !include dashboards/lovelace.yaml
