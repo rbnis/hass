@@ -1,6 +1,7 @@
 temperature = data.get("temperature")
 thermostat = data.get("thermostat")
 temperature_target = data.get("temperature_target", 21.0)
+enable_heating = data.get("enable_heating", 'on')
 
 if thermostat is not None and temperature is not None:
   if not temperature.startswith('sensor.'):
@@ -13,9 +14,13 @@ if thermostat is not None and temperature is not None:
   thermostat_state = hass.states.get(thermostat)
   thermostat_target = 0
 
-  if thermostat_state.state == 'off':
-    logger.info("Setting target %s to min temperature, because state=off")
-    thermostat_target = float(thermostat_state.attributes['min_temp'])
+  # if thermostat_state.state == 'off':
+  if enable_heating != 'off':
+    if thermostat_state.state == 'off':
+      exit()
+    else:
+      logger.info("Setting target %s to min temperature, because enable_heating!=off")
+      thermostat_target = float(thermostat_state.attributes['min_temp'])
   else:
     temperature_state=hass.states.get(temperature)
     temperature_delta = temperature_target - float(temperature_state.state)
@@ -34,9 +39,8 @@ if thermostat is not None and temperature is not None:
 
     logger.debug("thermostat_target_sanitized=%s", thermostat_target)
 
-  thermostat_target = round(thermostat_target * 2) / 2
-
-  logger.debug("thermostat_target_rounded=%s", thermostat_target)
+    thermostat_target = round(thermostat_target * 2) / 2
+    logger.debug("thermostat_target_rounded=%s", thermostat_target)
 
   if thermostat_target != float(thermostat_state.attributes['temperature']):
     logger.info("Setting target %s to %s", thermostat, thermostat_target)
@@ -44,3 +48,13 @@ if thermostat is not None and temperature is not None:
       'entity_id': thermostat,
       'temperature': thermostat_target
     })
+
+    hvac_mode = 'auto'
+    if thermostat_target == float(thermostat_state.attributes['min_temp']):
+      hvac_mode = 'off'
+
+    if thermostat_state.state != hvac_mode:
+      hass.services.call('climate', 'set_hvac_mode', {
+        'entity_id': thermostat,
+        'temperature': 'off'
+      })

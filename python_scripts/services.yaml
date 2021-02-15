@@ -10,3 +10,6 @@ update_thermostat:
     temperature_target:
       description: The temperature you want your room to have.
       example: 21.5
+    enable_heating:
+      description: Enable or disable heating. For example if a Window is open.
+      example: 'off'
