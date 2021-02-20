@@ -37,7 +37,7 @@ binary_sensor: !include entities/binary_sensor.yaml
 timer: !include entities/timers.yaml
 
 # Actions
-automation ui: !include actions/automations_ui.yaml
+automation ui: !include automations.yaml
 automation manual: !include_dir_merge_list actions/automations/
 scene: !include actions/scenes.yaml
 script: !include scripts.yaml
