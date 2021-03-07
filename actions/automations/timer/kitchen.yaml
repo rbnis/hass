@@ -10,6 +10,9 @@
   - service: automation.turn_on
     entity_id: automation.kitchen_motion_not_detected
     data: {}
+  - service: automation.turn_on
+    entity_id: automation.kitchen_motion_detected
+    data: {}
   - condition: device
     device_id: f795a2894ae84f93b27efb9486fb7721
     entity_id: binary_sensor.kitchen_motion
