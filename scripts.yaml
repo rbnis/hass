@@ -23,14 +23,18 @@ toggle_living_room:
         brightness: 75
         color_temp: 350
       ambiente_light:
-        color:
+        desk:
+        - 255
+        - 226
+        - 162
+        couch:
         - 104
         - 0
         - 231
-        color_bkp:
-        - 136
-        - 221
+        rc3:
+        - 104
         - 0
+        - 231
   - choose:
     - conditions:
       - condition: and
@@ -43,7 +47,7 @@ toggle_living_room:
         - condition: not
           conditions:
           - condition: state
-            entity_id: light.living_room_ambiente_desk_1
+            entity_id: light.living_room_ambiente_desk
             state: 'on'
         - condition: not
           conditions:
@@ -57,21 +61,21 @@ toggle_living_room:
           brightness_pct: '{{ ceiling_light.brightness }}'
           color_temp: '{{ ceiling_light.color_temp }}'
       - service: light.turn_on
-        entity_id: light.living_room_ambiente_desk_1
+        entity_id: light.living_room_ambiente_desk
         data:
-          brightness_pct: 50
-          rgb_color: '{{ ambiente_light.color }}'
+          brightness_pct: 60
+          rgb_color: '{{ ambiente_light.desk }}'
       - service: light.turn_on
         entity_id: light.living_room_ambiente_couch
         data:
-          brightness_pct: 75
-          rgb_color: '{{ ambiente_light.color }}'
+          brightness_pct: 70
+          rgb_color: '{{ ambiente_light.couch }}'
     default:
     - service: light.turn_off
       entity_id: light.living_room_ceiling_light
       data: {}
     - service: light.turn_off
-      entity_id: light.living_room_ambiente_desk_1
+      entity_id: light.living_room_ambiente_desk
       data: {}
     - service: light.turn_off
       entity_id: light.living_room_ambiente_couch
