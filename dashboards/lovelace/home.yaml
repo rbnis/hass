@@ -5,7 +5,8 @@ views:
       - entity: weather.hupfeldstrasse
         show_forecast: true
         type: weather-forecast
-      - cards:
+      - type: grid
+        cards:
           - entity: light.bedroom_ceiling_light
             hold_action:
               action: more-info
@@ -45,7 +46,6 @@ views:
               action: call-service
               service: script.turn_off_all_lights
             type: button
-        type: horizontal-stack
       - card:
           entity: timer.kitchen_motion_disable
           hold_action:
@@ -88,7 +88,7 @@ views:
           - entity: light.living_room_ceiling_light
             name: Ceiling Light
             secondary_info: brightness
-          - entity: light.living_room_ambiente_desk_1
+          - entity: light.living_room_ambiente_desk
             name: Ambiente Desk
           - entity: light.living_room_ambiente_couch
             name: Ambiente Couch
@@ -154,6 +154,21 @@ views:
         title: Hallway
         show_header_toggle: false
         state_color: true
+      - type: 'custom:mini-graph-card'
+        name: Power Usage
+        entities:
+          - entity: sensor.living_room_plug_rack_energy
+            name: Energy (W)
+          - entity: sensor.living_room_plug_rack_power
+            name: Power (kWh)
+          - entity: input_number.nighttime
+            name: Night
+            color: grey
+            show_line: false
+            show_points: false
+            show_legend: false
+            y_axis: secondary
+        hours_to_show: 72
     panel: false
     path: home
     title: Home
