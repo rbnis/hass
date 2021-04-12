@@ -117,6 +117,9 @@
   - data: {}
     entity_id: automation.kitchen_motion_not_detected
     service: automation.turn_off
+  - data: {}
+    entity_id: automation.kitchen_motion_detected
+    service: automation.turn_off
   - data:
       duration: '1:00:00'
     entity_id: timer.kitchen_motion_disable
